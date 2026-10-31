@@ -64,6 +64,24 @@ ddev drush en workflow_engine -y
 ddev drush cr
 ```
 
+## Alternative Setup (Without Database Backup)
+
+If you do not want to import the `e2logy-db.sql` file, follow these steps:
+
+**1. Install Drush**
+
+```bash
+ddev composer require drush/drush
+```
+
+**2. Import Configuration into the Database**
+
+```bash
+ddev drush cim
+```
+
+**Note:** This approach requires an already installed Drupal site and an initialized database. The configuration sync directory must contain the exported Drupal configuration.
+
 ## Workflow Engine
 
 Open the workflow builder at:
@@ -72,15 +90,17 @@ Open the workflow builder at:
 
 ## Useful Commands
 
-| Command             | Description                    |
-| ------------------- | ------------------------------ |
-| `ddev start`        | Start the project              |
-| `ddev stop`         | Stop the project               |
-| `ddev restart`      | Restart the project            |
-| `ddev drush cr`     | Clear Drupal cache             |
-| `ddev drush status` | Check Drupal status            |
-| `ddev drush uli`    | Generate a one-time login link |
+| **Command** | **Description** |
+|---|---|
+| `ddev start` | Start the project |
+| `ddev stop` | Stop the project |
+| `ddev restart` | Restart the project |
+| `ddev drush cr` | Clear Drupal cache |
+| `ddev drush status` | Check Drupal status |
+| `ddev drush uli` | Generate a one-time login link |
 
 ## Database
 
 The `e2logy-db.sql` file contains the database backup required to restore the existing Drupal project.
+
+**Note:** Importing the database backup will replace the existing local database contents.
