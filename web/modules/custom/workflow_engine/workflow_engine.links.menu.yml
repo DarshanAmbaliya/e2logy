@@ -1,0 +1,10 @@
+workflow_engine.admin:
+  title: 'Assessments'
+  description: 'Create and manage assessments.'
+  route_name: workflow_engine.admin
+  parent: system.admin_structure
+  weight: 90
+workflow_engine.submissions:
+  title: 'Assessment submissions'
+  route_name: workflow_engine.submissions
+  parent: workflow_engine.admin

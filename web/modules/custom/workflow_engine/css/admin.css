@@ -1,0 +1,57 @@
+.workflow-builder__toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0 0 16px
+}
+
+.workflow-step {
+  border: 1px solid #d3d4d9;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 0 0 18px;
+  background: #fff
+}
+
+.workflow-step__head,
+.workflow-field__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start
+}
+
+.workflow-field {
+  border-left: 4px solid #d3d4d9;
+  padding: 12px 16px;
+  margin: 12px 0;
+  background: #f7f9fa
+}
+
+.workflow-inline {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.5fr 1fr;
+  gap: 12px
+}
+
+.workflow-rule {
+  border: 1px solid #d3d4d9;
+  padding: 12px;
+  margin: 10px 0;
+  background: #fff
+}
+
+.workflow-rule-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 2fr 2fr auto;
+  gap: 10px;
+  align-items: end
+}
+
+@media(max-width:900px) {
+
+  .workflow-inline,
+  .workflow-rule-grid {
+    grid-template-columns: 1fr
+  }
+}

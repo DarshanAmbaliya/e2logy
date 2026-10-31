@@ -1,0 +1,37 @@
+<?php
+/** Implements hook_schema(). */
+function workflow_engine_schema() {
+  $schema['workflow_engine_submission'] = [
+    'description' => 'Assessment submissions.',
+    'fields' => [
+      'id' => ['type' => 'serial', 'unsigned' => TRUE, 'not null' => TRUE],
+      'assessment_id' => ['type' => 'varchar', 'length' => 64, 'not null' => TRUE],
+      'assessment_label' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE],
+      'created' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'answers' => ['type' => 'text', 'size' => 'big', 'not null' => TRUE],
+      'result' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => ''],
+    ],
+    'primary key' => ['id'],
+    'indexes' => ['assessment_id' => ['assessment_id'], 'created' => ['created']],
+  ];
+  return $schema;
+}
+
+/** Upgrade older Workflow Engine installations to the rebuilt schema. */
+function workflow_engine_update_10001() {
+  $schema = \Drupal::database()->schema();
+  if ($schema->tableExists('workflow_engine_submission') && $schema->fieldExists('workflow_engine_submission', 'workflow_id') && !$schema->fieldExists('workflow_engine_submission', 'assessment_id')) {
+    $schema->changeField('workflow_engine_submission', 'workflow_id', 'assessment_id', ['type' => 'varchar', 'length' => 64, 'not null' => TRUE]);
+  }
+  if ($schema->tableExists('workflow_engine_submission') && $schema->fieldExists('workflow_engine_submission', 'workflow_label') && !$schema->fieldExists('workflow_engine_submission', 'assessment_label')) {
+    $schema->changeField('workflow_engine_submission', 'workflow_label', 'assessment_label', ['type' => 'varchar', 'length' => 255, 'not null' => TRUE]);
+  }
+  $factory = \Drupal::configFactory();
+  foreach ($factory->listAll('workflow_engine.workflow.') as $old_name) {
+    $data = $factory->get($old_name)->getRawData();
+    $id = $data['id'] ?? substr($old_name, strlen('workflow_engine.workflow.'));
+    if ($id && $factory->get('workflow_engine.assessment.' . $id)->isNew()) {
+      $factory->getEditable('workflow_engine.assessment.' . $id)->setData($data)->save();
+    }
+  }
+}

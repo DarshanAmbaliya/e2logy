@@ -1,0 +1,27 @@
+# Drupal dependencies
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+
+# Drupal generated files
+/web/sites/*/files/
+
+# Local settings
+/web/sites/*/settings.local.php
+/web/sites/*/services.local.yml
+
+# DDEV
+.ddev/.config.yaml
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

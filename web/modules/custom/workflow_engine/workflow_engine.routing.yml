@@ -1,0 +1,65 @@
+workflow_engine.admin:
+  path: '/admin/structure/assessments'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\AssessmentListForm'
+    _title: 'Assessments'
+  requirements:
+    _permission: 'administer workflow engine'
+workflow_engine.add:
+  path: '/admin/structure/assessments/add'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\AssessmentBuilderForm'
+    _title: 'Add assessment'
+  requirements:
+    _permission: 'administer workflow engine'
+workflow_engine.edit:
+  path: '/admin/structure/assessments/{assessment_id}/edit'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\AssessmentBuilderForm'
+    _title: 'Edit assessment'
+  requirements:
+    _permission: 'administer workflow engine'
+workflow_engine.delete:
+  path: '/admin/structure/assessments/{assessment_id}/delete'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\AssessmentDeleteForm'
+    _title: 'Delete assessment'
+  requirements:
+    _permission: 'administer workflow engine'
+workflow_engine.submissions:
+  path: '/admin/structure/assessments/submissions'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\SubmissionController::listing'
+    _title: 'Assessment submissions'
+  requirements:
+    _permission: 'administer workflow engine'
+workflow_engine.submission:
+  path: '/admin/structure/assessments/submissions/{submission_id}'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\SubmissionController::detail'
+    _title: 'Submission'
+  requirements:
+    _permission: 'administer workflow engine'
+    submission_id: '\d+'
+
+workflow_engine.submission_delete:
+  path: '/admin/structure/assessments/submissions/{submission_id}/delete'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\SubmissionDeleteForm'
+    _title: 'Delete submission'
+  requirements:
+    _permission: 'administer site configuration'
+workflow_engine.frontend_list:
+  path: '/assessments'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\AssessmentController::frontendListing'
+    _title: 'Assessments'
+  requirements:
+    _access: 'TRUE'
+workflow_engine.execute:
+  path: '/assessments/{slug}'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\AssessmentWizardForm'
+    _title: 'Assessment'
+  requirements:
+    _access: 'TRUE'

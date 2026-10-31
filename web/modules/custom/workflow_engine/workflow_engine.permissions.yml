@@ -1,0 +1,3 @@
+administer workflow engine:
+  title: 'Administer workflow engine'
+  restrict access: true

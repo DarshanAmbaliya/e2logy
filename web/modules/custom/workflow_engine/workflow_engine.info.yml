@@ -1,0 +1,5 @@
+name: Workflow Engine
+core_version_requirement: ^10 || ^11
+type: module
+description: 'AJAX assessment builder with steps, fields, conditions, result rules, submissions and frontend wizard.'
+package: Custom

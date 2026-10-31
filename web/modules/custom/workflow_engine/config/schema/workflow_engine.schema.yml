@@ -1,0 +1,9 @@
+workflow_engine.assessment.*:
+  type: config_object
+  label: 'Assessment'
+  mapping:
+    id: { type: string, label: 'ID' }
+    label: { type: string, label: 'Label' }
+    slug: { type: string, label: 'Slug' }
+    published: { type: boolean, label: 'Published' }
+    definition: { type: ignore, label: 'Definition' }
