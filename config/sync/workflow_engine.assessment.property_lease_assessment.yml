@@ -1,0 +1,75 @@
+id: property_lease_assessment
+label: 'Property Lease Assessment'
+slug: property-lease-assessment
+published: true
+definition:
+  steps:
+    0:
+      title: 'Applicant Details'
+      fields:
+        -
+          label: 'Full Name'
+          name: full_name
+          type: textfield
+          required: true
+          options: {  }
+        -
+          label: 'Email Address'
+          name: email_address
+          type: email
+          required: true
+          options: {  }
+    1:
+      title: 'Property Details'
+      fields:
+        2:
+          label: 'Property Type'
+          name: property_type
+          type: select
+          required: true
+          options:
+            residential: Residential
+            commercial: Commercial
+        6:
+          label: 'Is the property intended for personal use or rental purposes?'
+          name: is_the_property_intended_for_personal_use_or_rental_purposes
+          type: select
+          required: false
+          options:
+            personal_use: 'Personal Use'
+            rental: Rental
+        7:
+          label: 'What type of business will operate at the property?'
+          name: operate_property
+          type: textfield
+          required: false
+          options: {  }
+    3:
+      title: 'Lease Assessment'
+      fields:
+        8:
+          label: 'Is a signed lease agreement available?'
+          name: is_a_signed_lease_agreement_available
+          type: radios
+          required: true
+          options:
+            'yes': 'Yes'
+            'no': 'No'
+  conditions:
+    -
+      source: property_type
+      operator: equals
+      value: residential
+      target: is_the_property_intended_for_personal_use_or_rental_purposes
+    -
+      source: property_type
+      operator: equals
+      value: commercial
+      target: operate_property
+  rules:
+    -
+      field: is_a_signed_lease_agreement_available
+      operator: equals
+      value: 'no'
+      result: 'High Risk'
+  default_result: 'Low Risk'

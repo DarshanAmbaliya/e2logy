@@ -1,0 +1,22 @@
+uuid: 4b0ab4e6-6eef-4476-a6d4-03cb50d7a086
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.webform_default
+  module:
+    - file
+    - filter
+    - system
+_core:
+  default_config_hash: wkW7P5A53YhGmsgamrmTbfwpZrqdnPYiJdoAZQtdmJg
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'delete own files'
+  - 'use text format basic_html'
+  - 'use text format webform_default'

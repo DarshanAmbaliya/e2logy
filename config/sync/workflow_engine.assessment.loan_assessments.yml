@@ -1,0 +1,62 @@
+id: loan_assessments
+label: 'Loan Assessments'
+slug: loan-assessments
+published: true
+definition:
+  steps:
+    -
+      title: 'Basic Details'
+      fields:
+        -
+          label: 'Full Name'
+          name: full_name
+          type: textfield
+          required: true
+          options: {  }
+    -
+      title: 'Loan Details'
+      fields:
+        1:
+          label: 'Loan Amount'
+          name: loan_amount
+          type: number
+          required: false
+          options: {  }
+        2:
+          label: 'Do you have Document?'
+          name: you_have_document
+          type: radios
+          required: false
+          options:
+            'yes': 'Yes'
+            'no': 'No'
+        3:
+          label: 'Document Name'
+          name: document_name
+          type: textfield
+          required: false
+          options: {  }
+    -
+      title: 'Final details'
+      fields:
+        4:
+          label: 'do you agreed?'
+          name: do_you_agreed
+          type: radios
+          required: true
+          options:
+            'yes': 'Yes'
+            'no': 'No'
+  conditions:
+    -
+      source: you_have_document
+      operator: equals
+      value: 'yes'
+      target: document_name
+  rules:
+    -
+      field: do_you_agreed
+      operator: equals
+      value: 'no'
+      result: 'Please Agree term and condition'
+  default_result: 'You are eligible for loan'
